@@ -1,7 +1,7 @@
 import React from "react";
 import Sun from "../assets/icon-sun.svg";
 import Moon from "../assets/icon-moon.svg";
-import { lightAndDarkMode } from "./LightAndDark";
+import { lightAndDarkMode } from "./functions/LightAndDark";
 
 function NavBar() {
   return (

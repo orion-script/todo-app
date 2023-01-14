@@ -23,7 +23,7 @@ function Footer() {
           <FaLinkedinIn className="cursor-pointer mx-2 mt-5 hover:mt-2" />
         </a>
       </div>
-      <div className="w-full md:w-2/4 text-center text-xs typewritter text-gray-700 dark:text-slate-400 ">
+      <div className="w-full md:w-2/4 text-center text-xs typewritter text-gray-700 dark:text-slate-400 h-5">
         <p className="typewritter">
           Designed by{" "}
           <a className="font-thin" href="https://github.com/Hadestech01/">
