@@ -8,7 +8,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="bg-zinc-50 dark:bg-BackOne w-full flex flex-col justify-between h-auto">
+    <div className="w-full flex flex-col justify-between h-auto">
       <NavBar />
       <div className="absolute w-full h-auto top-32">
         <NewTodo />
