@@ -10,12 +10,14 @@ function NavBar() {
         <h1 className="font-bold text-4xl text-white tracking-widest font-mono">
           TODO
         </h1>
+
         <img
           src={Moon}
           alt=""
           className="btnModeM"
           onClick={lightAndDarkMode}
         />
+
         <img
           src={Sun}
           alt=""
