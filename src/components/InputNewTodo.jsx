@@ -14,7 +14,7 @@ function InputNewTodo() {
 
       <button
         type="submit"
-        className="bg-white dark:bg-gray-900 w-1/5 text-black dark:text-slate-400 rounded-lg"
+        className="bg-white dark:bg-gray-900 w-1/5 text-slate-400 rounded-lg"
       >
         Add
       </button>

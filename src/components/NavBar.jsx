@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sun from "../assets/icon-sun.svg";
 import Moon from "../assets/icon-moon.svg";
-import { lightAndDarkMode } from "./functions/LightAndDark";
+import { useState } from "react";
 
 function NavBar() {
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") === "dark"
+      ? document.documentElement.classList.add("dark")
+      : document.documentElement.classList.remove("dark")
+  );
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
+  const lightAndDarkMode = (event) => {
+    event.preventDefault();
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      localStorage.setItem("theme", "light");
+      setTheme("light");
+    } else {
+      localStorage.setItem("theme", "dark");
+      setTheme("dark");
+    }
+  };
+
   return (
     <nav className="bg-bigLight dark:bg-bigDark w-full h-72">
       <div className="flex flex-row justify-between w-11/12 md:w-2/4 items-center m-auto pt-16">
@@ -12,16 +37,9 @@ function NavBar() {
         </h1>
 
         <img
-          src={Moon}
+          src={localStorage.getItem("theme") === "dark" ? Sun : Moon}
           alt=""
           className="btnModeM"
-          onClick={lightAndDarkMode}
-        />
-
-        <img
-          src={Sun}
-          alt=""
-          className="btnModeS hidden"
           onClick={lightAndDarkMode}
         />
       </div>

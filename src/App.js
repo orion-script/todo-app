@@ -16,11 +16,11 @@ function App() {
   return (
     <div className="w-full flex flex-col justify-between h-auto">
       <NavBar />
-      <div className="absolute w-full h-auto top-32">
+      <div className="absolute w-full h-auto top-40 md:top-36">
         <InputNewTodo />
         <div>
           <Form tasks={DATA} />
-          <Buttons />
+          <Buttons count={DATA.length} />
         </div>
       </div>
       <Footer />

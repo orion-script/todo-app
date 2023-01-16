@@ -21,7 +21,7 @@ function TodoExample(prop) {
             Edit
           </button>
           <button type="button" className="h-7">
-            <img src={Cross} alt="" className="h-4 mx-2" />
+            <img src={Cross} alt="" className="h-4 mx-2 dark:bg-white" />
           </button>
         </div>
       </li>
