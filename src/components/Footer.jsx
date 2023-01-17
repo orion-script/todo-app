@@ -3,11 +3,10 @@ import { FaGithub } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
-import "../../src/";
 
 function Footer() {
   return (
-    <div className="bg-zinc-50 dark:bg-BackOne w-full h-auto m-auto pt-72 md:pt-64 text-center">
+    <div className="bg-zinc-50 dark:bg-BackOne w-full h-auto m-auto pt-72 md:pt-auto text-center">
       <p className="text-slate-400 pt-5">Drag and drop to reorder the list</p>
 
       <div className="flex flex-row justify-center w-full h-10 text-black dark:text-slate-400 mb-5">

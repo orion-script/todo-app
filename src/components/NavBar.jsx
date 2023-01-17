@@ -31,7 +31,7 @@ function NavBar() {
 
   return (
     <nav className="bg-bigLight dark:bg-bigDark w-full h-72">
-      <div className="flex flex-row justify-between w-11/12 md:w-2/4 items-center m-auto pt-16">
+      <div className="flex flex-row justify-between w-11/12 md:w-2/4 items-center m-auto pt-10">
         <h1 className="font-bold text-4xl text-white tracking-widest font-mono">
           TODO
         </h1>
