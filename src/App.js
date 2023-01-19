@@ -11,6 +11,7 @@ const FILTER_MAP = {
   All: () => true,
   Active: (task) => !task.completed,
   Completed: (task) => task.completed,
+  ClearCompleted: (task) => !task.completed,
 };
 
 const FILTER_NAMES = Object.keys(FILTER_MAP);
@@ -96,22 +97,31 @@ function App(props) {
     />
   ));
 
+  // const DeleteCompleted = (e) => {
+  //   e.preventDefault();
+  //   console.log("deleted");
+  //   console.log(FILTER_MAP.Completed);
+  // };
+
   const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
   const headingText = `${taskList.length} ${tasksNoun} remaining`;
 
   return (
-    <div className="w-full flex flex-col justify-between h-auto">
+    <div className="bg-zinc-50 dark:bg-BackOne w-full flex flex-col justify-between h-auto">
       <NavBar />
       <div className="absolute w-full h-auto top-40 md:top-28 text-slate-400">
         <Form addTask={addTask} />
-        <ul className="w-11/12 md:w-2/4 m-auto" aria-labelledby="list-heading">
+        <ul
+          className="w-11/12 md:w-2/4 m-auto h-auto"
+          aria-labelledby="list-heading"
+        >
           {taskList}
         </ul>
         <div className="md:hidden w-11/12 md:w-2/4 bg-white dark:bg-whiteOne h-10 rounded-lg shadow-lg flex justify-around items-center m-auto my-3">
           <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
             {headingText}
           </h2>
-          <button>Clear Completed</button>
+          <div className="">{filterList[3]}</div>
         </div>
         <div className="w-11/12 md:w-2/4 bg-white dark:bg-whiteOne h-10 rounded-lg shadow-lg flex justify-around items-center m-auto">
           <div className="hidden md:block w-3/12">
@@ -121,7 +131,7 @@ function App(props) {
           </div>
           <div className="w-11/12 md:w-3/5 flex justify-around">
             {filterList}
-            <button className="hidden md:block">Clear Completed</button>
+            {/* screen.width < 768 ? {filterList} : {filterList.splice(0, 3)} */}
           </div>
         </div>
       </div>

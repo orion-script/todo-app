@@ -6,7 +6,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 
 function Footer() {
   return (
-    <div className="bg-zinc-50 dark:bg-BackOne w-full h-auto m-auto pt-72 md:pt-auto text-center">
+    <div className="bg-zinc-50 dark:bg-BackOne w-full h-auto m-auto pt-80 md:pt-96 text-center">
       <p className="text-slate-400 pt-5">Drag and drop to reorder the list</p>
 
       <div className="flex flex-row justify-center w-full h-10 text-black dark:text-slate-400 mb-5">

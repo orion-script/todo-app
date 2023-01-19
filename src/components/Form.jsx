@@ -23,7 +23,7 @@ function Form(props) {
         type="text"
         className="bg-white dark:bg-gray-900 w-9/12 h-12 rounded-lg pl-8 text-slate-400"
         name="text"
-        autComplete="off"
+        autcomplete="off"
         placeholder="Create a new todo..."
         value={name}
         onChange={handleChange}

@@ -29,38 +29,40 @@ function InputNewTodo(props) {
     setEditing(false);
   }
 
-  const editingTemplate = (
-    <form className="stack-small" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label className="todo-label" htmlFor={props.id}>
-          New name for {props.name}
+  const editingTask = (
+    <form className="w-full" onSubmit={handleSubmit}>
+      <div className="w-full flex flex-col">
+        <label className="w-full text-center" htmlFor={props.id}>
+          Rename {props.name}
         </label>
+
         <input
           id={props.id}
-          className="todo-text"
+          className="bg-gray-400 text-slate-900 dark:bg-gray-500 dark:text-slate-300 pl-2 md:w-11/12 w-4/5 m-auto my-1 rounded-lg"
           type="text"
           value={newName}
           onChange={handleChange}
           ref={editFieldRef}
         />
       </div>
-      <div className="btn-group">
+
+      <div className="w-full flex justify-around">
         <button
           type="button"
           className="btn todo-cancel"
           onClick={() => setEditing(false)}
         >
           Cancel
-          <span className="visually-hidden">renaming {props.name}</span>
         </button>
+
         <button type="submit" className="btn btn__primary todo-edit">
           Save
-          <span className="visually-hidden">new name for {props.name}</span>
         </button>
       </div>
     </form>
   );
-  const viewTemplate = (
+
+  const displayTask = (
     <div className="bg-white dark:bg-whiteOne my-1 py-3 rounded-lg items-center shadow-lg flex justify-between cursor-pointer w-full h-10">
       <div className="w-9/12">
         <input
@@ -88,7 +90,7 @@ function InputNewTodo(props) {
           className="h-7"
           onClick={() => props.deleteTask(props.id)}
         >
-          <img src={Cross} alt="" className="h-4 mx-2 dark:bg-white" />{" "}
+          <img src={Cross} alt="" className="h-4 mx-2 dark:bg-white" />
         </button>
       </div>
     </div>
@@ -105,35 +107,9 @@ function InputNewTodo(props) {
 
   return (
     <li className="bg-white dark:bg-whiteOne my-1 rounded-lg items-center flex justify-between cursor-pointer w-full">
-      {isEditing ? editingTemplate : viewTemplate}
+      {isEditing ? editingTask : displayTask}
     </li>
   );
 }
 
 export default InputNewTodo;
-
-// import React from "react";
-
-// function InputNewTodo() {
-//   return (
-//     <div className="flex justify-between mb-8 w-11/12 md:w-2/4 m-auto h-12 text-white">
-//       <input
-//         name="text"
-//         type="text"
-//         autoComplete="off"
-//         id=""
-//         placeholder="Create a new todo..."
-//         className="bg-white dark:bg-gray-900 w-9/12 h-12 rounded-lg pl-8"
-//       />
-
-//       <button
-//         type="submit"
-//         className="bg-white dark:bg-gray-900 w-1/5 text-slate-400 rounded-lg"
-//       >
-//         Add
-//       </button>
-//     </div>
-//   );
-// }
-
-// export default InputNewTodo;
