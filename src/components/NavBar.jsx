@@ -15,8 +15,8 @@ function NavBar() {
     document.body.className = theme;
   }, [theme]);
 
-  const lightAndDarkMode = (event) => {
-    event.preventDefault();
+  const lightAndDarkMode = (e) => {
+    e.preventDefault();
     if (
       localStorage.theme === "dark" ||
       (!("theme" in localStorage) &&

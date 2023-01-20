@@ -17,16 +17,23 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 function App(props) {
   const listHeadingRef = useRef(null);
 
-  const [tasks, setTasks] = useState(props.tasks);
+  const DATA = [
+    // { id: "todo-0", name: "I want to Eat", completed: true },
+    // { id: "todo-1", name: "I want to Sleep", completed: false },
+    // { id: "todo-2", name: "I want to Repeat", completed: false },
+    // { id: "todo-2", name: "I want to Code", completed: false },
+  ];
+
+  const [tasks, setTasks] = useState(DATA);
   const [filter, setFilter] = useState("All");
 
-  function usePrevious(value) {
+  const usePrevious = (value) => {
     const ref = useRef();
     useEffect(() => {
       ref.current = value;
     });
     return ref.current;
-  }
+  };
 
   const prevTaskLength = usePrevious(tasks.length);
 
@@ -36,13 +43,13 @@ function App(props) {
     }
   }, [tasks.length, prevTaskLength]);
 
-  function addTask(name) {
+  const addTask = (name) => {
     const newTask = { id: `todo-${nanoid()}`, name, completed: false };
     setTasks([...tasks, newTask]);
     // localStorage.setItem("task", [newTask]);
-  }
+  };
 
-  function toggleTaskCompleted(id) {
+  const toggleTaskCompleted = (id) => {
     const updatedTasks = tasks.map((task) => {
       // if this task has the same ID as the edited task
       if (id === task.id) {
@@ -53,20 +60,20 @@ function App(props) {
       return task;
     });
     setTasks(updatedTasks);
-  }
+  };
 
-  function deleteTask(id) {
+  const deleteTask = (id) => {
     const remainingTasks = tasks.filter((task) => id !== task.id);
     setTasks(remainingTasks);
     console.log("Delete Button");
-  }
+  };
 
-  function deleteCompletedTask(e) {
+  const deleteCompletedTask = (e) => {
     e.preventDefault();
     setTasks((tasks) => tasks.filter((task) => !task.completed));
-  }
+  };
 
-  function editTask(id, newName) {
+  const editTask = (id, newName) => {
     const editedTaskList = tasks.map((task) => {
       // if this task has the same ID as the edited task
       if (id === task.id) {
@@ -75,7 +82,7 @@ function App(props) {
       return task;
     });
     setTasks(editedTaskList);
-  }
+  };
 
   const taskList = tasks
     .filter(FILTER_MAP[filter])

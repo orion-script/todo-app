@@ -5,7 +5,7 @@ function InputNewTodo(props) {
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState("");
 
-  function usePrevious(value) {
+  const usePrevious = (value) => {
     const ref = useRef();
     useEffect(() => {
       ref.current = value;
@@ -18,11 +18,11 @@ function InputNewTodo(props) {
   const editFieldRef = useRef(null);
   const editButtonRef = useRef(null);
 
-  function handleChange(e) {
+ const handleChange = (e) => {
     setNewName(e.target.value);
   }
 
-  function handleSubmit(e) {
+ const handleSubmit = (e) => {
     e.preventDefault();
     props.editTask(props.id, newName);
     setNewName("");
