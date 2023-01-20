@@ -11,9 +11,7 @@ const FILTER_MAP = {
   All: () => true,
   Active: (task) => !task.completed,
   Completed: (task) => task.completed,
-  ClearCompleted: (task) => !task.completed,
 };
-
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 function App(props) {
@@ -41,7 +39,7 @@ function App(props) {
   function addTask(name) {
     const newTask = { id: `todo-${nanoid()}`, name, completed: false };
     setTasks([...tasks, newTask]);
-    localStorage.setItem("task", [newTask]);
+    // localStorage.setItem("task", [newTask]);
   }
 
   function toggleTaskCompleted(id) {
@@ -60,13 +58,18 @@ function App(props) {
   function deleteTask(id) {
     const remainingTasks = tasks.filter((task) => id !== task.id);
     setTasks(remainingTasks);
+    console.log("Delete Button");
+  }
+
+  function deleteCompletedTask(e) {
+    e.preventDefault();
+    setTasks((tasks) => tasks.filter((task) => !task.completed));
   }
 
   function editTask(id, newName) {
     const editedTaskList = tasks.map((task) => {
       // if this task has the same ID as the edited task
       if (id === task.id) {
-        //
         return { ...task, name: newName };
       }
       return task;
@@ -97,12 +100,6 @@ function App(props) {
     />
   ));
 
-  // const DeleteCompleted = (e) => {
-  //   e.preventDefault();
-  //   console.log("deleted");
-  //   console.log(FILTER_MAP.Completed);
-  // };
-
   const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
   const headingText = `${taskList.length} ${tasksNoun} remaining`;
 
@@ -121,17 +118,21 @@ function App(props) {
           <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
             {headingText}
           </h2>
-          <div className="">{filterList[3]}</div>
+          <div className="">
+            <button onClick={deleteCompletedTask}>Clear Completed</button>
+          </div>
         </div>
         <div className="w-11/12 md:w-2/4 bg-white dark:bg-whiteOne h-10 rounded-lg shadow-lg flex justify-around items-center m-auto">
-          <div className="hidden md:block w-3/12">
+          <div className="hidden md:block w-4/12 text-center">
             <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
               {headingText}
             </h2>
           </div>
-          <div className="w-11/12 md:w-3/5 flex justify-around">
+          <div className="w-11/12 flex justify-around ">
             {filterList}
-            {/* screen.width < 768 ? {filterList} : {filterList.splice(0, 3)} */}
+            <button className="hidden md:flex" onClick={deleteCompletedTask}>
+              Clear Completed
+            </button>
           </div>
         </div>
       </div>

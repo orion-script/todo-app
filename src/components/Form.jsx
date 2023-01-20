@@ -17,7 +17,7 @@ function Form(props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex justify-between mb-6 w-11/12 md:w-2/4 m-auto h-12 text-white"
+      className="flex justify-between mb-6 w-11/12 mt-10 md:mt-5 md:w-2/4 m-auto h-12 text-white"
     >
       <input
         type="text"

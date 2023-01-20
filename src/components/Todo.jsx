@@ -85,12 +85,13 @@ function InputNewTodo(props) {
         >
           Edit
         </button>
-        <button
-          type="button"
-          className="h-7"
-          onClick={() => props.deleteTask(props.id)}
-        >
-          <img src={Cross} alt="" className="h-4 mx-2 dark:bg-white" />
+        <button type="button" className="h-7">
+          <img
+            src={Cross}
+            alt=""
+            onClick={() => props.deleteTask(props.id)}
+            className="h-4 mx-2 dark:bg-white"
+          />
         </button>
       </div>
     </div>
