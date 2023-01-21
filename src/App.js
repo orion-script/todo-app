@@ -17,14 +17,16 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 function App(props) {
   const listHeadingRef = useRef(null);
 
-  const DATA = [
-    // { id: "todo-0", name: "I want to Eat", completed: true },
-    // { id: "todo-1", name: "I want to Sleep", completed: false },
-    // { id: "todo-2", name: "I want to Repeat", completed: false },
-    // { id: "todo-2", name: "I want to Code", completed: false },
-  ];
+  // const DATA = [
+  //   // { id: "todo-0", name: "I want to Eat", completed: true },
+  //   // { id: "todo-1", name: "I want to Sleep", completed: false },
+  //   // { id: "todo-2", name: "I want to Repeat", completed: false },
+  //   // { id: "todo-2", name: "I want to Code", completed: false },
+  // ];
 
-  const [tasks, setTasks] = useState(DATA);
+  const [tasks, setTasks] = useState([
+    ...JSON.parse(localStorage.getItem("todos")),
+  ]);
   const [filter, setFilter] = useState("All");
 
   const usePrevious = (value) => {
@@ -46,7 +48,16 @@ function App(props) {
   const addTask = (name) => {
     const newTask = { id: `todo-${nanoid()}`, name, completed: false };
     setTasks([...tasks, newTask]);
-    // localStorage.setItem("task", [newTask]);
+
+    let newTodos = [
+      ...tasks,
+      {
+        id: `todo-${nanoid()}`,
+        name: name,
+        completed: false,
+      },
+    ];
+    localStorage.setItem("todos", JSON.stringify(newTodos));
   };
 
   const toggleTaskCompleted = (id) => {
@@ -88,10 +99,10 @@ function App(props) {
     .filter(FILTER_MAP[filter])
     .map((task) => (
       <Todo
+        key={task.id}
         id={task.id}
         name={task.name}
         completed={task.completed}
-        key={task.id}
         toggleTaskCompleted={toggleTaskCompleted}
         deleteTask={deleteTask}
         editTask={editTask}
