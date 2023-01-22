@@ -24,9 +24,11 @@ function App(props) {
   //   // { id: "todo-2", name: "I want to Code", completed: false },
   // ];
 
-  const [tasks, setTasks] = useState([
-    ...JSON.parse(localStorage.getItem("todos")),
-  ]);
+  const [tasks, setTasks] = useState(
+    localStorage.getItem("todos")
+      ? [...JSON.parse(localStorage.getItem("todos"))]
+      : []
+  );
   const [filter, setFilter] = useState("All");
   console.log({ ...JSON.parse(localStorage.getItem("todos")) });
 
