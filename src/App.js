@@ -28,6 +28,7 @@ function App(props) {
     ...JSON.parse(localStorage.getItem("todos")),
   ]);
   const [filter, setFilter] = useState("All");
+  console.log({ ...JSON.parse(localStorage.getItem("todos")) });
 
   const usePrevious = (value) => {
     const ref = useRef();
