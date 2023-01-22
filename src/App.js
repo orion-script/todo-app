@@ -17,20 +17,19 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 function App(props) {
   const listHeadingRef = useRef(null);
 
-  // const DATA = [
-  //   // { id: "todo-0", name: "I want to Eat", completed: true },
-  //   // { id: "todo-1", name: "I want to Sleep", completed: false },
-  //   // { id: "todo-2", name: "I want to Repeat", completed: false },
-  //   // { id: "todo-2", name: "I want to Code", completed: false },
-  // ];
+  const DATA = [
+    // { id: "todo-0", name: "I want to Eat", completed: true },
+    // { id: "todo-1", name: "I want to Sleep", completed: false },
+    // { id: "todo-2", name: "I want to Repeat", completed: false },
+    // { id: "todo-2", name: "I want to Code", completed: false },
+  ];
 
   const [tasks, setTasks] = useState(
     localStorage.getItem("todos")
       ? [...JSON.parse(localStorage.getItem("todos"))]
-      : []
+      : DATA
   );
   const [filter, setFilter] = useState("All");
-  console.log({ ...JSON.parse(localStorage.getItem("todos")) });
 
   const usePrevious = (value) => {
     const ref = useRef();
@@ -52,7 +51,7 @@ function App(props) {
     const newTask = { id: `todo-${nanoid()}`, name, completed: false };
     setTasks([...tasks, newTask]);
 
-    let newTodos = [
+    const newTodos = [
       ...tasks,
       {
         id: `todo-${nanoid()}`,
@@ -74,17 +73,21 @@ function App(props) {
       return task;
     });
     setTasks(updatedTasks);
+    localStorage.setItem("todos", JSON.stringify(updatedTasks));
   };
 
   const deleteTask = (id) => {
     const remainingTasks = tasks.filter((task) => id !== task.id);
     setTasks(remainingTasks);
-    console.log("Delete Button");
+    //Delete the Clicked Array From localStorage
+    localStorage.setItem("todos", JSON.stringify(remainingTasks));
   };
 
-  const deleteCompletedTask = (e) => {
-    e.preventDefault();
-    setTasks((tasks) => tasks.filter((task) => !task.completed));
+  const deleteCompletedTask = () => {
+    const remainnTasks = tasks.filter((task) => !task.completed);
+    setTasks(remainnTasks);
+    //Delete All Completed Array From localStorage
+    localStorage.setItem("todos", JSON.stringify(remainnTasks));
   };
 
   const editTask = (id, newName) => {
@@ -96,6 +99,7 @@ function App(props) {
       return task;
     });
     setTasks(editedTaskList);
+    localStorage.setItem("todos", JSON.stringify(editedTaskList));
   };
 
   const taskList = tasks
@@ -125,39 +129,41 @@ function App(props) {
   const headingText = `${taskList.length} ${tasksNoun} remaining`;
 
   return (
-    <div className="bg-zinc-50 dark:bg-BackOne w-full flex flex-col justify-between h-auto">
+    <div className="bg-zinc-50 dark:bg-BackOne w-full flex flex-col justify-between h-screen">
       <NavBar />
       <div className="absolute w-full h-auto top-40 md:top-28 text-slate-400">
         <Form addTask={addTask} />
-        <ul
-          className="w-11/12 md:w-2/4 m-auto h-auto"
-          aria-labelledby="list-heading"
-        >
-          {taskList}
-        </ul>
-        <div className="md:hidden w-11/12 md:w-2/4 bg-white dark:bg-whiteOne h-10 rounded-lg shadow-lg flex justify-around items-center m-auto my-3">
-          <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
-            {headingText}
-          </h2>
-          <div className="">
-            <button onClick={deleteCompletedTask}>Clear Completed</button>
-          </div>
-        </div>
-        <div className="w-11/12 md:w-2/4 bg-white dark:bg-whiteOne h-10 rounded-lg shadow-lg flex justify-around items-center m-auto">
-          <div className="hidden md:block w-4/12 text-center">
+        <div className="bg-zinc-50 dark:bg-BackOne w-full">
+          <ul
+            className="w-11/12 md:w-2/4 m-auto h-auto"
+            aria-labelledby="list-heading"
+          >
+            {taskList}
+          </ul>
+          <div className="md:hidden w-11/12 md:w-2/4 bg-white dark:bg-whiteOne h-10 rounded-lg shadow-lg flex justify-around items-center m-auto my-3">
             <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
               {headingText}
             </h2>
+            <div className="">
+              <button onClick={deleteCompletedTask}>Clear Completed</button>
+            </div>
           </div>
-          <div className="w-11/12 flex justify-around ">
-            {filterList}
-            <button className="hidden md:flex" onClick={deleteCompletedTask}>
-              Clear Completed
-            </button>
+          <div className="w-11/12 md:w-2/4 bg-white dark:bg-whiteOne h-10 rounded-lg shadow-lg flex justify-around items-center m-auto">
+            <div className="hidden md:block w-4/12 text-center">
+              <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
+                {headingText}
+              </h2>
+            </div>
+            <div className="w-11/12 flex justify-around ">
+              {filterList}
+              <button className="hidden md:flex" onClick={deleteCompletedTask}>
+                Clear Completed
+              </button>
+            </div>
           </div>
+          <Footer />
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

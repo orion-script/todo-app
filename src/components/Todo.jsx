@@ -11,23 +11,23 @@ function InputNewTodo(props) {
       ref.current = value;
     });
     return ref.current;
-  }
+  };
 
   const wasEditing = usePrevious(isEditing);
 
   const editFieldRef = useRef(null);
   const editButtonRef = useRef(null);
 
- const handleChange = (e) => {
+  const handleChange = (e) => {
     setNewName(e.target.value);
-  }
+  };
 
- const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     props.editTask(props.id, newName);
     setNewName("");
     setEditing(false);
-  }
+  };
 
   const editingTask = (
     <form className="w-full" onSubmit={handleSubmit}>
@@ -47,15 +47,11 @@ function InputNewTodo(props) {
       </div>
 
       <div className="w-full flex justify-around">
-        <button
-          type="button"
-          className="btn todo-cancel"
-          onClick={() => setEditing(false)}
-        >
+        <button type="button" className="" onClick={() => setEditing(false)}>
           Cancel
         </button>
 
-        <button type="submit" className="btn btn__primary todo-edit">
+        <button type="submit" className="">
           Save
         </button>
       </div>
