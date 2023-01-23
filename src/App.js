@@ -135,7 +135,7 @@ function App(props) {
         <Form addTask={addTask} />
         <div className="bg-zinc-50 dark:bg-BackOne w-full">
           <ul
-            className="w-11/12 md:w-2/4 m-auto h-auto"
+            className="bg-white dark:bg-whiteOne rounded-lg shadow-lg w-11/12 md:w-2/4 m-auto h-auto"
             aria-labelledby="list-heading"
           >
             {taskList}

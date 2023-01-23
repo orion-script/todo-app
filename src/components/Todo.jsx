@@ -33,7 +33,7 @@ function InputNewTodo(props) {
     <form className="w-full" onSubmit={handleSubmit}>
       <div className="w-full flex flex-col">
         <label className="w-full text-center" htmlFor={props.id}>
-          Rename {props.name}
+          Rename "{props.name}"
         </label>
 
         <input
@@ -59,7 +59,7 @@ function InputNewTodo(props) {
   );
 
   const displayTask = (
-    <div className="bg-white dark:bg-whiteOne my-1 py-3 rounded-lg items-center shadow-lg flex justify-between cursor-pointer w-full h-10">
+    <div className="items-center flex justify-between cursor-pointer w-full h-8">
       <div className="w-9/12">
         <input
           id={props.id}
@@ -81,6 +81,7 @@ function InputNewTodo(props) {
         >
           Edit
         </button>
+
         <button type="button" className="h-7">
           <img
             src={Cross}
@@ -103,8 +104,11 @@ function InputNewTodo(props) {
   }, [wasEditing, isEditing]);
 
   return (
-    <li className="bg-white dark:bg-whiteOne my-1 rounded-lg items-center flex justify-between cursor-pointer w-full">
-      {isEditing ? editingTask : displayTask}
+    <li className="bg-white dark:bg-whiteOne mb-2 rounded-lg items-center flex justify-between cursor-pointer w-full">
+      <div className="w-full">
+        {isEditing ? editingTask : displayTask}
+        <hr className="h-5 w-11/12 m-auto rounded text-slate-400" />
+      </div>
     </li>
   );
 }

@@ -32,7 +32,7 @@ function NavBar() {
 
   return (
     <nav className="bg-bigLight dark:bg-bigDark w-full h-72">
-      <div className="flex flex-row justify-between w-full px-10 md:w-2/4 items-center m-auto pt-10">
+      <div className="flex flex-row justify-between w-full px-10 md:w-2/4 items-center m-auto pt-5">
         <h1 className="font-bold text-4xl text-white tracking-widest font-mono">
           TODO
         </h1>
@@ -40,7 +40,7 @@ function NavBar() {
         <img
           src={localStorage.getItem("theme") === "dark" ? Sun : Moon}
           alt=""
-          className="btnModeM"
+          className=""
           onClick={lightAndDarkMode}
         />
       </div>
