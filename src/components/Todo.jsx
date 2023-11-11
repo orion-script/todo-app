@@ -51,9 +51,7 @@ function InputNewTodo(props) {
           Cancel
         </button>
 
-        <button type="submit" className="">
-          Save
-        </button>
+        <button type="submit">Save</button>
       </div>
     </form>
   );
@@ -107,7 +105,7 @@ function InputNewTodo(props) {
     <li className="bg-white dark:bg-whiteOne mb-2 rounded-lg items-center flex justify-between cursor-pointer w-full">
       <div className="w-full">
         {isEditing ? editingTask : displayTask}
-        <hr className="h-1 w-11/12 m-auto rounded-t text-slate-400 mt-3" />
+        <hr className="h-1 w-[98%] m-auto text-slate-400 mt-3" />
       </div>
     </li>
   );

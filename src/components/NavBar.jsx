@@ -40,7 +40,7 @@ function NavBar() {
         <img
           src={localStorage.getItem("theme") === "dark" ? Sun : Moon}
           alt=""
-          className=""
+          className="cursor-pointer"
           onClick={lightAndDarkMode}
         />
       </div>
